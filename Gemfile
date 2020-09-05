@@ -28,8 +28,14 @@ gem 'rack-cors'
 # Use postgres as database
 gem 'pg'
 
+# Use Json Web Token (JWT) for token based authentication
+gem 'jwt'
+
 # Environment variables
 gem 'figaro'
+
+# Mail service
+gem 'mailgun-ruby', '~>1.1.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

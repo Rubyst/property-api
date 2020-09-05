@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 2020_09_05_093701) do
     t.string "office_address"
     t.string "phone_number"
     t.string "profile_picture"
+    t.string "confirm_token"
+    t.boolean "email_confirmed"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

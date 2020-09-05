@@ -7,6 +7,8 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :office_address
       t.string :phone_number
       t.string :profile_picture
+      t.string :confirm_token
+      t.boolean :email_confirmed
 
       t.timestamps
     end

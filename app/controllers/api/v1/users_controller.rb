@@ -20,10 +20,10 @@ module Api
 
                     mg_client = Mailgun::Client.new(ENV['MAILGUN_SECRET'])
                     mb_obj = Mailgun::MessageBuilder.new
-                    mb_obj.set_from_address("pureheart-find-a-house@app.com")
+                    mb_obj.from("pureheart-find-a-house@app.com")
                     mb_obj.add_recipient(:to, user.email)
-                    mb_obj.set_subject("Email Confirmation")
-                    mb_obj.set_html_body(
+                    mb_obj.subject("Email Confirmation")
+                    mb_obj.body_html(
                         "<html><body>
                         <p>Hello #{user.name}, </p> <br>
                         <p>Please click on the link below to verify your email address</p> <br>

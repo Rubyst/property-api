@@ -16,7 +16,7 @@ module Api
                     confirm_token = SecureRandom.urlsafe_base64(5, false)
                     user.confirm_token = confirm_token
                     user.save
-                    url = "#{request.original_url}/verify_email/#{confirm_token}"
+                    url = "#{request.original_url}verify_email/#{confirm_token}"
 
                     mg_client = Mailgun::Client.new(ENV['MAILGUN_SECRET'])
                     mb_obj = Mailgun::MessageBuilder.new
@@ -53,10 +53,12 @@ module Api
                     user.email_confirmed = true
                     user.save!
                   
-                    render json: {
-                        success: true,
-                        message: 'Account successfuly verified. You can now login'    
-                    }, status: 200   
+                    # render json: {
+                    #     success: true,
+                    #     message: 'Account successfuly verified. You can now login'    
+                    # }, status: 200
+
+                    redirect_to 'https://www.google.com/', notice: 'Account successfuly verified. You can now login' and return
                 else
                     render json: {
                         success: false,
@@ -103,7 +105,7 @@ module Api
                         success: true,
                         message: "User login successful",
                         token: token, 
-                        user: @authenticated_user
+                        user: @authenticated_user.name
                     }, status: 200
                     
                     return

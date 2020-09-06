@@ -51,7 +51,7 @@ module Api
                     render json: {
                         success: true,
                         message: 'There are no listings at the moment. Please check back later. Thank you.',
-                        data: properties
+                        count: properties.length
                     }, status: 200
                 else
                     render json: {
@@ -95,7 +95,7 @@ module Api
 
             # fetch all user only listings
             def user_listings
-                result = @current_user.properties
+                result = @current_user.properties.order(created_at: :desc)
                 if result.length == 0
                     render json: {
                         success: true,

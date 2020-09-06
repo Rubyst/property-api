@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_05_093701) do
+ActiveRecord::Schema.define(version: 2020_09_06_044816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,17 +21,10 @@ ActiveRecord::Schema.define(version: 2020_09_05_093701) do
     t.string "email"
     t.string "phone"
     t.string "message"
-    t.integer "property"
+    t.integer "property_details"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "images", force: :cascade do |t|
-    t.string "public_id"
-    t.string "public_url"
-    t.integer "property"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.string "status", default: "pending"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -39,11 +32,12 @@ ActiveRecord::Schema.define(version: 2020_09_05_093701) do
     t.string "title"
     t.string "description"
     t.decimal "price"
-    t.string "type"
+    t.string "property_type"
     t.string "category"
     t.string "status"
     t.string "location"
     t.integer "size"
+    t.string "property_images", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

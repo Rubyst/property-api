@@ -1,8 +1,8 @@
 class Booking < ApplicationRecord
-    belongs_to :property, class_name: "Property", foreign_key: "property"
+    belongs_to :property, class_name: "Property", foreign_key: "property_details"
     
     validates :first_name, presence: true
     validates :last_name, presence: true
-    validates :email, presence: true, format: { with: ConstantData::VALID_EMAIL_REGEX }
+    validates :email, presence: true
     validates :message, presence: true 
 end

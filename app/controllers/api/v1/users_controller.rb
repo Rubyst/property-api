@@ -7,7 +7,11 @@ module Api
             # user registration method
             def create
                 user = User.new(user_params)
-                if user.valid?      # user creation was successful
+                if user.valid?   # user creation was successful
+                    # upload profile picture and save url to db
+                    image = Cloudinary::Uploader.upload(user_params['profile_picture'])
+                    user.profile_picture = image['secure_url']
+                    user.save
                     # send an email to verify email address
                     confirm_token = SecureRandom.urlsafe_base64(5, false)
                     user.confirm_token = confirm_token
@@ -16,13 +20,9 @@ module Api
 
                     mg_client = Mailgun::Client.new(ENV['MAILGUN_SECRET'])
                     mb_obj = Mailgun::MessageBuilder.new
-                    # Define the from address.
                     mb_obj.set_from_address("pureheart-find-a-house@app.com")
-                    # Define a to recipient.
                     mb_obj.add_recipient(:to, user.email)
-                    # Define the subject.
                     mb_obj.set_subject("Email Confirmation")
-                    # Define the HTML text of the message
                     mb_obj.set_html_body(
                         "<html><body>
                         <p>Hello #{user.name}, </p> <br>

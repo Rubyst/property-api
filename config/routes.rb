@@ -8,6 +8,13 @@ Rails.application.routes.draw do
 
       # Properties routes
       resources :properties
+      get "/user_properties", to: "properties#user_listings"
+
+      #bookings routes
+      post "/bookings/:property_id", to: "bookings#create"
+      get "/bookings/:property_id", to: "bookings#index"
+      put "/bookings/:id/approve", to: "bookings#approve"
+      put "/bookings/:id/decline", to: "bookings#decline"
     end
   end
 end

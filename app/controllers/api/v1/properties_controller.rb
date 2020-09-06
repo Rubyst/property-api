@@ -99,7 +99,8 @@ module Api
                 if result.length == 0
                     render json: {
                         success: true,
-                        message: 'You do not have any listing yet.'
+                        message: 'You do not have any listing yet.',
+                        count: result.length
                     }, status: 200
                 else 
                     render json: {

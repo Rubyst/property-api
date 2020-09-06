@@ -4,7 +4,7 @@ class CreateProperties < ActiveRecord::Migration[6.0]
       t.integer :user_id
       t.string :title
       t.string :description
-      t.decimal :price
+      t.integer :price
       t.string :property_type
       t.string :category
       t.string :status

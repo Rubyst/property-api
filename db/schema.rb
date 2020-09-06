@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_044816) do
     t.integer "user_id"
     t.string "title"
     t.string "description"
-    t.decimal "price"
+    t.integer "price"
     t.string "property_type"
     t.string "category"
     t.string "status"

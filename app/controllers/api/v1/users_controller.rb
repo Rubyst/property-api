@@ -4,6 +4,12 @@ require_relative 'json_web_token'
 module Api
     module V1
         class UsersController < ApplicationController
+            def welcome
+                render json: {
+                    message: 'Welcome. View the api docs at the link below',
+                    api_doc: "https://documenter.getpostman.com/view/6511530/TVCiSRVd"
+                }
+            end
             # user registration method
             def create
                 user = User.new(user_params)

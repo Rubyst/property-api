@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace 'api' do
     namespace 'v1' do
+      root to: "users#welcome"
       # User registration, login and email verification routes
       resources :users, only: [:create]
       post "/users/login", to: "users#login"

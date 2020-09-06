@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  realtor: 1
+  title: MyString
+  description: MyString
+  price: 9.99
+  type: 
+  category: MyString
+  status: MyString
+  location: MyString
+  size: 1
+
+two:
+  realtor: 1
+  title: MyString
+  description: MyString
+  price: 9.99
+  type: 
+  category: MyString
+  status: MyString
+  location: MyString
+  size: 1

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       # Properties routes
       resources :properties
       get "/user_properties", to: "properties#user_listings"
-      get "/properties/search/:size/:property_type/:category/:location", to: "properties#search"
+      get "/properties/search/:category/:location", to: "properties#search"
 
       #bookings routes
       post "/bookings/:property_id", to: "bookings#create"

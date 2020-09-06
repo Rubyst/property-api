@@ -63,8 +63,7 @@ module Api
             end
 
             def search
-                result = Property.where("size = ? AND property_type = ? AND category = ? AND location = ? ",
-                params[:size], params[:property_type], params[:category], params[:location]).order(created_at: :desc)
+                result = Property.where("category = ? AND location = ? ", params[:category], params[:location]).order(created_at: :desc)
                 render json: {
                     success: true,
                     message: "Found #{result.length} listings for your search",

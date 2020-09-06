@@ -7,10 +7,9 @@ module Api
             def create
                 result = Property.find(params[:property_id])
                 new_booking = Booking.create(
-                    first_name: bookings_params['first_name'],
-                    last_name: bookings_params['last_name'],
+                    name: bookings_params['name'],
                     email: bookings_params['email'],
-                    phone: bookings_params['phone'],
+                    subject: bookings_params['subject'],
                     message: bookings_params['message'],
                     property: result
                 )
@@ -125,7 +124,7 @@ module Api
     
             private
             def bookings_params
-                params.permit(:first_name, :last_name, :email, :phone, :message)
+                params.permit(:name, :email, :subject, :message)
             end
             
         end

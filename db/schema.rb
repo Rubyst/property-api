@@ -16,10 +16,9 @@ ActiveRecord::Schema.define(version: 2020_09_06_044816) do
   enable_extension "plpgsql"
 
   create_table "bookings", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
+    t.string "name"
     t.string "email"
-    t.string "phone"
+    t.string "subject"
     t.string "message"
     t.integer "property_details"
     t.datetime "created_at", precision: 6, null: false

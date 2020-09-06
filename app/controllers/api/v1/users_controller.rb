@@ -16,7 +16,7 @@ module Api
                     confirm_token = SecureRandom.urlsafe_base64(5, false)
                     user.confirm_token = confirm_token
                     user.save
-                    url = "#{request.original_url}verify_email/#{confirm_token}"
+                    url = "#{request.original_url}/verify_email/#{confirm_token}"
 
                     mg_client = Mailgun::Client.new(ENV['MAILGUN_SECRET'])
                     mb_obj = Mailgun::MessageBuilder.new

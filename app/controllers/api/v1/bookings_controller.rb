@@ -46,7 +46,7 @@ module Api
                 if result.length === 0
                     render json: {
                         success: true,
-                        message: "There no bookings/enquiries for this listing",
+                        message: "There are no bookings/enquiries for this listing",
                         count: result.length
                     }, status: 200
                 else

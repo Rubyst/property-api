@@ -1,7 +1,7 @@
 module Api
     module V1
         class PropertiesController < ApplicationController
-            before_action :authorize_request, except: [:index, :show]
+            before_action :authorize_request, except: [:index, :show, :search]
             before_action :set_page, only: [:index]
             
             # add a new listing
@@ -60,6 +60,16 @@ module Api
                         data: properties
                     }, status: 200
                 end
+            end
+
+            def search
+                result = Property.where("size = ? AND property_type = ? AND category = ? AND location = ? ",
+                params[:size], params[:property_type], params[:category], params[:location]).order(created_at: :desc)
+                render json: {
+                    success: true,
+                    message: "Found #{result.length} listings for your search",
+                    data: result
+                }
             end
 
             # get single listing

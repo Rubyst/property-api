@@ -19,29 +19,28 @@ module Api
                     user.profile_picture = image['secure_url']
                     user.save
                     # send an email to verify email address
-                    confirm_token = SecureRandom.urlsafe_base64(5, false)
-                    user.confirm_token = confirm_token
-                    user.save
-                    url = "#{request.original_url}/verify_email/#{confirm_token}"
+                    # confirm_token = SecureRandom.urlsafe_base64(5, false)
+                    # user.confirm_token = confirm_token
+                    # user.save
+                    # url = "#{request.original_url}/verify_email/#{confirm_token}"
 
-                    mg_client = Mailgun::Client.new(ENV['MAILGUN_SECRET'])
-                    mb_obj = Mailgun::MessageBuilder.new
-                    mb_obj.from("pureheart-find-a-house@app.com")
-                    mb_obj.add_recipient(:to, user.email)
-                    mb_obj.subject("Email Confirmation")
-                    mb_obj.body_html(
-                        "<html><body>
-                        <p>Hello #{user.name}, </p> <br>
-                        <p>Please click on the link below to verify your email address</p> <br>
-                        <a href=#{url}>#{url}</a> <br><br>
-                        <p>Thanks</p>
-                        </body></html>"
-                    )
-                    mg_client.send_message(ENV['MAILGUN_DOMAIN'], mb_obj).to_h!
-            
+                    # mg_client = Mailgun::Client.new(ENV['MAILGUN_SECRET'])
+                    # mb_obj = Mailgun::MessageBuilder.new
+                    # mb_obj.from("pureheart-find-a-house@app.com")
+                    # mb_obj.add_recipient(:to, user.email)
+                    # mb_obj.subject("Email Confirmation")
+                    # mb_obj.body_html(
+                    #     "<html><body>
+                    #     <p>Hello #{user.name}, </p> <br>
+                    #     <p>Please click on the link below to verify your email address</p> <br>
+                    #     <a href=#{url}>#{url}</a> <br><br>
+                    #     <p>Thanks</p>
+                    #     </body></html>"
+                    # )
+                    # mg_client.send_message(ENV['MAILGUN_DOMAIN'], mb_obj).to_h!
                     render json: {
                         success: true,
-                        message: "Account successfuly created. Please check your email to verify your account"
+                        message: "Account successfully created. You can now login with your email and password"
                     }, status: 201
                 else
                     render json: {
@@ -95,14 +94,14 @@ module Api
                     return
                 end
                 # if user is found, check if user has confirmed email
-                if !user.email_confirmed
-                    render json: {
-                        success: false,
-                        error: "Kindly confirm your email before login"
-                    }, status: 400
+                # if !user.email_confirmed
+                #     render json: {
+                #         success: false,
+                #         error: "Kindly confirm your email before login"
+                #     }, status: 400
 
-                    return
-                end
+                #     return
+                # end
                 # if user is confirmed, authenticate with password, generate and return a jwt
                 @authenticated_user = user.authenticate(login_params[:password])
                 if @authenticated_user

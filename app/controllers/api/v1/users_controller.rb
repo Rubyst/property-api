@@ -104,14 +104,14 @@ module Api
                 # end
                 # if user is confirmed, authenticate with password, generate and return a jwt
                 @authenticated_user = user.authenticate(login_params[:password])
+                @authenticated_user.password_digest = nil;
                 if @authenticated_user
                     token = Api::V1::JsonWebToken.encode(user_id: @authenticated_user.id)
                 
                     render json: { 
                         success: true,
-                        message: "User login successful",
                         token: token, 
-                        user: @authenticated_user.name
+                        user: @authenticated_user
                     }, status: 200
                     
                     return

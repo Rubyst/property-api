@@ -7,10 +7,15 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins '*'
+    origins %r{http://localhost:\d+},
+            %r{http://127.0.0.1:\d+},
+            %r{http://192.168.\d+.\d{1,3}(:\d+)?},
+            'api-real.herokuapp.com',
+            'api-real-prod.herokuapp.com'
 
     resource '*',
-      headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+             headers: :any,
+             methods: %i[get post delete put options head],
+             max_age: 20 * 24 * 60 * 60
   end
 end

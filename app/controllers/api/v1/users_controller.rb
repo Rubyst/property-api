@@ -7,7 +7,7 @@ module Api
             def welcome
                 render json: {
                     message: 'Welcome. View the api docs at the link below',
-                    api_doc: "https://documenter.getpostman.com/view/6511530/TVCiSRVd"
+                    api_doc: "https://to-add-here"
                 }
             end
             # user registration method
@@ -63,7 +63,7 @@ module Api
                     #     message: 'Account successfuly verified. You can now login'    
                     # }, status: 200
 
-                    redirect_to 'https://pureheart-find-a-house-admin.netlify.app/login.html' 
+                    redirect_to '/users/login' 
                     return
                 else
                     render json: {
